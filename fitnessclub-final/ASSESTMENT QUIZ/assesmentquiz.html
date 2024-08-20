@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Assessment Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Fitness Assessment Quiz</h1>
+        <div id="live-score">Score: 0</div>
+        <div id="quiz">
+            <!-- Questions will be injected here by JavaScript -->
+        </div>
+        <button id="submit" class="btn-primary" style="display: none;">Submit Quiz</button>
+        <button id="review-answers" class="btn-secondary" style="display: none;">Review Answers</button>
+        <div id="result" style="display: none;">
+            <h2 id="score"></h2>
+            <div id="animation-container"></div>
+        </div>
+        <div id="review" style="display: none;">
+            <h2>Review Your Answers</h2>
+            <div id="review-questions"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* styles.css */
+:root {
+    --primary-color: #111317;
+    --primary-color-light: #1f2125;
+    --primary-color-extra-light: #35373b;
+    --secondary-color: #f9ac54;
+    --secondary-color-dark: #d79447;
+    --text-light: #d1d5db;
+    --white: #ffffff;
+    --max-width: 1200px;
+  }
+  body{
+    font-family: "Poppins", sans-serif;
+    background-color: var(--primary-color);
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px; /* Adjust this value based on your preference */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+.container.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+h1, h2 {
+    color: #d79447;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"], input[type="date"], input[type="time"], button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type="text"], input[type="date"], input[type="time"] {
+    background: #fff;
+    color: #333;
+}
+
+button {
+    background-color: #d79447;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #b67a3c;
+}
+
+#goal-list, #notifications {
+    margin-top: 20px;
+}
+
+#goals li, #notifications-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

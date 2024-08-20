@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page Diet Planner</title>
+    <style>
+        a{
+            text-decoration: none; /* Removes underline */
+            color: #fff; /* White text color */
+        }
+        :root {
+            --primary-color: #111317;
+            --primary-color-light: #1f2125;
+            --primary-color-extra-light: #35373b;
+            --secondary-color: #f9ac54;
+            --secondary-color-dark: #d79447;
+            --text-light: #d1d5db;
+            --white: #ffffff;
+            --max-width: 1200px;
+        }
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--primary-color);
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            text-align: center;
+            
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        label, p{
+            
+            color: #fff;
+            display: block;
+            margin: 10px 0 5px;
+            
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 24px);
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;
+            display: block;
+            background-image: url('icon_placeholder.png'); /* Placeholder for icon */
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            padding-left: 40px; /* Adjust padding for the icon */
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid #f9ac54;
+            outline: none;
+            transform: scale(1.02);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .radio-group {
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            color: #fff;
+           
+        }
+
+        .radio-group input[type="radio"]:checked + label {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color-dark);
+            transform: scale(1.05);
+        }
+
+        .radio-group label:hover {
+            background-color: var(--secondary-color-light);
+            border-color: var(--secondary-color-dark);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #f9ac54;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff971f;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .pdf-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .pdf-buttons button {
+            width: 48%;
+        }
+.ok{
+font-size: 25px
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="dietForm">
+            <!-- Page 1: Gender -->
+            <div id="page1" class="page active">
+                <h1>Step 1: Gender</h1>
+                <label class="ok">What is your gender?</label>
+                <div class="radio-group">
+                    <input type="radio" id="genderMale" name="gender" value="male" required>
+                    <label for="genderMale">Male🚹</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="genderFemale" name="gender" value="female" required>
+                    <label for="genderFemale">Female🚺</label>
+                </div>
+                <button type="button" onclick="validateAndProceed(2)">Next</button>
+            </div>
+
+            <!-- Page 2: Main Goal -->
+            <div id="page2" class="page">
+                <h1>Step 2: Main Goal</h1>
+                <label class="ok">What's your main goal?</label>
+                <div class="radio-group">
+                    <input type="radio" id="goalLoseWeight" name="goal" value="lose_weight" required>
+                    <label for="goalLoseWeight">Lose Weight🏋️‍♂️</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="goalBuildMuscle" name="goal" value="build_muscle" required>
+                    <label for="goalBuildMuscle">Build Muscle💪</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="goalKeepFit" name="goal" value="keep_fit" required>
+                    <label for="goalKeepFit">Keep Fit👍</label>
+                </div>
+                <button type="button" onclick="showNextPage(1)">Back</button>
+                <button type="button" onclick="validateAndProceed(3)">Next</button>
+            </div>
+
+            <!-- Page 3: Focus Area -->
+            <div id="page3" class="page">
+                <h1>Step 3: Focus Area</h1>
+                <label class="ok">What's your focus area?🎯</label>
+                <div class="radio-group">
+                    <input type="radio" id="focusFullBody" name="focus_area" value="full_body" required>
+                    <label for="focusFullBody">Full Body🧍</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="focusArms" name="focus_area" value="arms" required>
+                    <label for="focusArms">Arms💪</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="focusChest" name="focus_area" value="chest" required>
+                    <label for="focusChest">Chest🏋️</label>
+                </div>
+                
+                <button type="button" onclick="showNextPage(2)">Back</button>
+                <button type="button" onclick="validateAndProceed(4)">Next</button>
+            </div>
+
+            <!-- Page 4: Age -->
+            <div id="page4" class="page">
+                <h1>Step 4: Age</h1>
+                <label for="age" class="ok">What is your age?</label>
+                <input type="number" id="age" name="age" required>
+                <button type="button" onclick="showNextPage(3)">Back</button>
+                <button type="button" onclick="validateAndProceed(5)">Next</button>
+            </div>
+
+            <!-- Page 5: Height -->
+            <div id="page5" class="page">
+                <h1>Step 5: Height</h1>
+                <label for="heightFeet" class="ok">What's your height?</label>
+                <input type="number" id="heightFeet" placeholder="ft" required>
+                <input type="number" id="heightInches" placeholder="in" required>
+                <button type="button" onclick="showNextPage(4)">Back</button>
+                <button type="button" onclick="validateAndProceed(6)">Next</button>
+            </div>
+
+            <!-- Page 6: Weight -->
+            <div id="page6" class="page">
+                <h1>Step 6: Weight</h1>
+                <label for="currentWeight" class="ok">What is your current weight (in kgs)?</label>
+                <input type="number" id="currentWeight" name="currentWeight" required>
+                <label for="targetWeight" class="ok">What is your target weight (in kgs)?</label>
+                <input type="number" id="targetWeight" name="targetWeight" required>
+                <button type="button" onclick="showNextPage(5)">Back</button>
+                <button type="button" onclick="calculateBMI()">Submit</button>
+            </div>
+
+            <!-- BMI Result -->
+            <div id="page7" class="page">
+                <h1>BMI Result </h1>
+                
+                <p id="bmiOutput"> </p><br>
+                <div class="pdf-buttons">
+                    
+                    <button type="button" ><a href="/lose-pdf.pdf" download class="download-button" style="margin-top: 0.5rem;">Click here to lose weight</a></button>
+                    <button type="button" ><a href="/gain-weight.pdf" download class="download-button">Click here to Gain Weight</a></button>
+                </div>
+                <button type="button" onclick="showNextPage(1)">Restart</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        function showNextPage(nextPageNumber) {
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.getElementById('page' + nextPageNumber).classList.add('active');
+        }
+
+        function validateAndProceed(nextPageNumber) {
+            const activePage = document.querySelector('.page.active');
+            const inputs = activePage.querySelectorAll('input[required]');
+            let isValid = false;
+
+            inputs.forEach(input => {
+                if (input.type === "radio") {
+                    if (input.checked) {
+                        isValid = true;
+                    }
+                } else {
+                    if (input.value) {
+                        isValid = true;
+                    }
+                }
+            });
+
+            if (isValid) {
+                showNextPage(nextPageNumber);
+            } else {
+                alert('Please select an option or fill out the required field.');
+            }
+        }
+
+        function calculateBMI() {
+            const weight = document.getElementById("currentWeight").value;
+            const heightFeet = document.getElementById("heightFeet").value;
+            const heightInches = document.getElementById("heightInches").value;
+
+            if (!weight || !heightFeet || !heightInches) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            const height = (parseInt(heightFeet) * 12) + parseInt(heightInches);
+            const bmi = (weight / (height * height)) * 703;
+
+            document.getElementById("bmiOutput").innerText = `Your BMI is ${bmi.toFixed(2)}`;
+            showNextPage(7);
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const bmiResult = document.getElementById("bmiOutput").innerText;
+
+            doc.text("BMI Result", 10, 10);
+            doc.text(bmiResult, 10, 20);
+            doc.save("lose-pdf.pdf");
+        }
+
+        function downloadText() {
+            const bmiResult = document.getElementById("bmiOutput").innerText;
+            const blob = new Blob([bmiResult], { type: "text/plain;charset=utf-8" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "gain-weight.pdf";
+            link.click();
+        }
+    </script>
+</body>
+</html>

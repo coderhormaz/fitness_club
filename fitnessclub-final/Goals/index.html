@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Goal Setting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Set Your Fitness Goals</h1>
+        <form id="goal-form">
+            <label for="goal">Goal:</label>
+            <input type="text" id="goal" name="goal" required>
+
+            <label for="deadline">Deadline:</label>
+            <input type="date" id="deadline" name="deadline" required>
+
+            <label for="reminder-time">Reminder Time:</label>
+            <input type="time" id="reminder-time" name="reminder-time" required>
+
+            <button type="submit">Set Goal</button>
+        </form>
+        <div id="goal-list">
+            <h2>Your Goals</h2>
+            <ul id="goals"></ul>
+        </div>
+        <div id="notifications">
+            <h2>Notifications</h2>
+            <ul id="notifications-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

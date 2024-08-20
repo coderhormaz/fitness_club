@@ -1,0 +1,184 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+   
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+
+}
+:root {
+    --primary-color: #111317;
+    --primary-color-light: #1f2125;
+    --primary-color-extra-light: #35373b;
+    --secondary-color: #f9ac54;
+    --secondary-color-dark: #d79447;
+    --text-light: #d1d5db;
+    --white: #ffffff;
+    --max-width: 1200px;
+  }
+  body{
+    font-family: "Poppins", sans-serif;
+    background-color: var(--primary-color);
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: #111317; /* Dark background for header */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-bottom: 4px solid #d79447; /* Orange accent color */
+}
+
+h1 {
+    font-size: 3.5em;
+    margin: 0;
+    color: #d79447; /* Orange color for heading */
+}
+
+h2 {
+    font-size: 2.5em;
+    margin: 40px 0 20px;
+    text-align: center;
+    color: #ffffff; /* White color for subheadings */
+}
+
+p {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+}
+
+/* Challenges Section */
+#challenges {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.challenge-card {
+    background: #f9ac54; /* Dark card background */
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    transition: transform 0.3s ease, background 0.3s ease, border 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border: 2px solid #d79447; /* Orange border for challenge cards */
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    background: #3a3a3a; /* Slightly lighter background on hover */
+    border-color: #ffc107; /* Yellow border on hover */
+}
+
+.challenge-card:active {
+    transform: translateY(2px);
+    background: #1a1a1a; /* Even darker background when active */
+}
+
+/* Rewards Section */
+#rewards {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#reward-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.reward-item {
+    background: radial-gradient(circle at 50% 50%, #ffd700 50%, #ffcc00 90%);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+
+/* Restart Button */
+#restart-challenges {
+    background-color: #d79447; /* Orange color for button */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#restart-challenges:hover {
+    background-color: #d79447; /* Darker orange on hover */
+    transform: scale(1.05);
+}
+
+#restart-challenges:active {
+    background-color: #d79447; /* Even darker orange when clicked */
+    transform: scale(0.95);
+}
+
+/* Badge Animations */
+@keyframes badgeAnimation {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.reward-item::after {
+    content: '🏅'; /* Gold medal emoji */
+    position: relative;
+    font-size: 2em;
+    color: white;
+}
+
+.reward-item.completed {
+    animation: badgeAnimation 0.5s ease forwards;
+    background: transparent; /* Make background transparent for completed badges */
+    box-shadow: none; /* Remove shadow for completed badges */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .challenge-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    header {
+        padding: 30px 20px;
+    }
+}
