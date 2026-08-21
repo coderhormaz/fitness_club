@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+:root {
+  --primary-color: #101820;
+  --primary-color-light: #182631;
+  --primary-color-extra-light: #243744;
+  --secondary-color: #f4a261;
+  --secondary-color-dark: #d97842;
+  --accent-color: #8bd3c7;
+  --text-light: #c6d2d8;
+  --white: #f8fbfc;
+  --surface: rgba(24, 38, 49, 0.92);
+  --border-color: rgba(139, 211, 199, 0.24);
+  --c: 244, 162, 97;
+  --t: 198, 210, 216;
+  --max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-light);
+  font-family: "DM Sans", sans-serif;
+  background: var(--primary-color);
+  background-image: radial-gradient(circle at 8% 0%, rgba(139, 211, 199, 0.12), transparent 28rem), radial-gradient(circle at 92% 100%, rgba(244, 162, 97, 0.11), transparent 30rem);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, button {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h1, h2, h3, h4, p {
+  margin-top: 0;
+}
+
+h1, h2, h3, h4 {
+  color: var(--white);
+  line-height: 1.15;
+}
+
+a {
+  color: var(--accent-color);
+  transition: color 180ms ease;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+button, .btn, input[type="submit"] {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+button:hover, .btn:hover, input[type="submit"]:hover {
+  transform: translateY(-2px);
+}
+
+input, textarea, select {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font: inherit;
+}
+
+input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(139, 211, 199, 0.4);
+  outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+  body {
+    background-image: radial-gradient(circle at 50% 0%, rgba(139, 211, 199, 0.12), transparent 22rem);
+  }
+}
